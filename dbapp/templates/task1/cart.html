@@ -1,0 +1,27 @@
+{% extends "menu.html" %}
+{% block pagename %}
+<h1>{{ title }}</h1>
+{% endblock %}
+{% block menu %}
+<ul>
+    <li><a href="{% url 'home' %}">Главная страница</a></li>
+    {% for m in menu %}
+    <li><a href="{% url m.url_name %}">{{ m.title}}</a></li>
+    {% endfor %}
+</ul>
+{% endblock %}
+{% block content %}
+<div>
+    <a href="{% url 'product' %}"><button>К выбору товаров</button></a></div>
+<div>
+    <a href="{% url 'home' %}" style="text-decoration: none;">
+        <button>Вернуться на главную страницу</button>
+    </a>
+</div>
+<h1>{{ content }}</h1>
+{% endblock %}
+
+
+
+</body>
+</html>

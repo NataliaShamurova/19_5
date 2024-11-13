@@ -1,0 +1,19 @@
+{% extends "menu.html" %}
+
+{% load static %}
+
+
+{% block css_addition %}
+<link rel="stylesheet" href="{% static 'task1/style.css' %}">
+{% endblock %}
+
+
+{% block pagename %}
+<h1>{{ title }}</h1>
+{% endblock %}
+
+{% block content %}
+    <p>Добро пожаловать в наш магазин!</p>
+{% endblock %}
+</body>
+</html>
