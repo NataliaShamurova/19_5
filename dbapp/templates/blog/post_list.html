@@ -1,0 +1,54 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Блог</title>
+    <link rel="stylesheet" href="{% static 'blog/style_blog.css' %}">
+</head>
+<body>
+    <h1>Посты блога</h1>
+    <ul>
+        {% for post in posts %}
+            <li>
+                <h2>{{ post.title }}</h2>
+                <p>{{ post.content }}</p>
+                <small>{{ post.created_at }}</small>
+            </li>
+        {% endfor %}
+    </ul>
+
+<div class="pagination">
+    <form method="GET">
+        <label for="page_size">Элементов на странице:</label>
+        <select id="page_size" name="page_size" onchange="this.form.submit()">
+            <option value="5" {% if request.GET.page_size == '5' %}selected{% endif %}>5</option>
+            <option value="10" {% if request.GET.page_size == '10' %}selected{% endif %}>10</option>
+            <option value="15" {% if request.GET.page_size == '15' %}selected{% endif %}>15</option>
+        </select>
+    </form>
+
+    <ul>
+        {% if posts.has_previous %}
+            <li><a href="?page=1&page_size={{ request.GET.page_size|default:5 }}">&laquo; Первая</a></li>
+            <li><a href="?page={{ posts.previous_page_number }}&page_size={{ request.GET.page_size|default:5 }}">Предыдущая</a></li>
+        {% endif %}
+
+        {% for i in posts.paginator.page_range %}
+            {% if posts.number == i %}
+                <li><a class="active" href="#">{{ i }}</a></li>
+            {% else %}
+                <li><a href="?page={{ i }}&page_size={{ request.GET.page_size|default:5 }}">{{ i }}</a></li>
+            {% endif %}
+        {% endfor %}
+
+        {% if posts.has_next %}
+            <li><a href="?page={{ posts.next_page_number }}&page_size={{ request.GET.page_size|default:5 }}">Следующая</a></li>
+            <li><a href="?page={{ posts.paginator.num_pages }}&page_size={{ request.GET.page_size|default:5 }}">Последняя &raquo;</a></li>
+        {% endif %}
+    </ul>
+</div>
+</body>
+</html>

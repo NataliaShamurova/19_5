@@ -1,0 +1,40 @@
+.pagination {
+    display: flex;
+    justify-content: center; /* Центрирует пагинацию */
+    list-style: none; /* Убирает маркеры списка */
+    padding: 0;
+}
+
+.pagination li {
+    margin: 0 5px; /* Отступы между элементами */
+}
+
+.pagination a,
+.pagination span {
+    display: inline-block;
+    padding: 10px 15px; /* Пространство вокруг текста */
+    text-decoration: none; /* Убирает подчеркивание */
+    background-color: #007BFF; /* Цвет фона */
+    color: white; /* Цвет текста */
+    border-radius: 5px; /* Округленные углы */
+    transition: background-color 0.3s; /* Плавный переход цвета */
+}
+
+.pagination a:hover {
+    background-color: #0056b3; /* Цвет фона при наведении */
+}
+
+.pagination a.active {
+    background-color: #0056b3; /* Цвет для активной страницы */
+    color: white; /* Цвет текста для активной страницы */
+}
+
+/* Мобильная версия */
+@media (max-width: 600px) {
+    .pagination {
+        flex-direction: column; /* Вертикальное выравнивание на маленьких экранах */
+    }
+    .pagination li {
+        margin: 5px 0; /* Вертикальные отступы между элементами */
+    }
+}
